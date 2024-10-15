@@ -1,8 +1,8 @@
 buildscript {
   ext {
-    kotlin_version = "1.9.24"
+    kotlin_version = "2.1.0-dev-5441"
     agp_version = System.getenv('AGP_VERSION') ?: "8.1.1"
-    ksp_version = "$kotlin_version-1.0.20"
+    ksp_version = "2.0.255"
     pluginArtifactId = 'hilt-android-gradle-plugin'
     pluginId = 'com.google.dagger.hilt.android'
   }
@@ -14,13 +14,6 @@ plugins {
   id 'maven-publish'
   id 'com.github.johnrengelman.shadow' version '8.1.1'
   id 'org.jetbrains.kotlin.android' version "$kotlin_version" apply false
-}
-
-allprojects {
-  repositories {
-    google()
-    mavenCentral()
-  }
 }
 
 // Avoids conflict with BUILD file

@@ -63,8 +63,8 @@ http_archive(
 
 android_sdk_repository(
     name = "androidsdk",
-    api_level = 32,
-    build_tools_version = "32.0.0",
+    api_level = 35,
+    build_tools_version = "35.0.0",
 )
 
 ####################################################
@@ -147,19 +147,29 @@ http_archive(
 
 load("@io_bazel_rules_kotlin//kotlin:repositories.bzl", "kotlin_repositories", "kotlinc_version")
 
-KOTLIN_VERSION = "1.9.24"
+KOTLIN_VERSION = "2.1.0-dev-5441"
 
 # Get from https://github.com/JetBrains/kotlin/releases/
 KOTLINC_RELEASE_SHA = "eb7b68e01029fa67bc8d060ee54c12018f2c60ddc438cf21db14517229aa693b"
 
-kotlin_repositories(
-    compiler_release = kotlinc_version(
-        release = KOTLIN_VERSION,
-        sha256 = KOTLINC_RELEASE_SHA,
-    ),
+# Use http_archive for JetBrains Kotlin dev compiler from Maven
+http_archive(
+    name = "com_github_jetbrains_kotlin",
+    urls = ["https://maven.pkg.jetbrains.space/kotlin/p/kotlin/bootstrap/org/jetbrains/kotlin/kotlin-compiler-embeddable/2.1.0-dev-5441/kotlin-compiler-embeddable-2.1.0-dev-5441.jar"],
+    sha256 = "eb7b68e01029fa67bc8d060ee54c12018f2c60ddc438cf21db14517229aa693b",
+    strip_prefix = "kotlin-2.1.0-dev-5441"
 )
 
-register_toolchains("//:kotlin_toolchain")
+
+kotlin_repositories(
+    compiler_release = kotlinc_version(
+        release = "2.1.0-dev-5441",
+        sha256 = "eb7b68e01029fa67bc8d060ee54c12018f2c60ddc438cf21db14517229aa693b"
+    )
+)
+
+load("@io_bazel_rules_kotlin//kotlin:core.bzl", "kt_register_toolchains")
+kt_register_toolchains()
 
 #############################
 # Load Maven dependencies
@@ -203,7 +213,7 @@ GRPC_VERSION = "1.2.0"
 
 INCAP_VERSION = "0.2"
 
-KSP_VERSION = KOTLIN_VERSION + "-1.0.20"
+KSP_VERSION = "2.0.255"
 
 MAVEN_VERSION = "3.3.3"
 
@@ -303,7 +313,11 @@ maven_install(
         "org.robolectric:shadows-framework:%s" % ROBOLECTRIC_VERSION,  # For ActivityController
     ],
     repositories = [
+        "file:///Users/jason/.m2/repository/",
         "https://repo1.maven.org/maven2",
         "https://maven.google.com",
+        "https://androidx.dev/storage/compose-compiler/repository/",
+        "https://maven.pkg.jetbrains.space/public/p/compose/dev",
+        "https://maven.pkg.jetbrains.space/kotlin/p/kotlin/bootstrap",
     ],
 )

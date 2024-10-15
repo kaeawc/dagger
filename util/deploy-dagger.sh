@@ -83,13 +83,6 @@ _deploy \
   java/dagger/android/artifact-javadoc.jar \
   ""
 
-_deploy \
-  "" \
-  java/dagger/android/android-legacy.aar \
-  java/dagger/android/legacy-pom.xml \
-  "" \
-  "" \
-  ""
 
 _deploy \
   "" \
@@ -99,13 +92,6 @@ _deploy \
   java/dagger/android/support/artifact-javadoc.jar \
   ""
 
-_deploy \
-  "" \
-  java/dagger/android/support/support-legacy.aar \
-  java/dagger/android/support/legacy-pom.xml \
-  "" \
-  "" \
-  ""
 
 _deploy \
   "com.google.auto.common,dagger.spi.internal.shaded.auto.common;androidx.room.compiler,dagger.spi.internal.shaded.androidx.room.compiler;kotlin.metadata,dagger.spi.internal.shaded.kotlin.metadata;androidx.room,dagger.spi.internal.shaded.androidx.room" \
