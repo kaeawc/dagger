@@ -147,7 +147,7 @@ http_archive(
 
 load("@io_bazel_rules_kotlin//kotlin:repositories.bzl", "kotlin_repositories", "kotlinc_version")
 
-KOTLIN_VERSION = "1.9.24"
+KOTLIN_VERSION = "2.0.21"
 
 # Get from https://github.com/JetBrains/kotlin/releases/
 KOTLINC_RELEASE_SHA = "eb7b68e01029fa67bc8d060ee54c12018f2c60ddc438cf21db14517229aa693b"
@@ -203,7 +203,7 @@ GRPC_VERSION = "1.2.0"
 
 INCAP_VERSION = "0.2"
 
-KSP_VERSION = KOTLIN_VERSION + "-1.0.20"
+KSP_VERSION = KOTLIN_VERSION + "-1.0.28"
 
 MAVEN_VERSION = "3.3.3"
 

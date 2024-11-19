@@ -1,12 +1,12 @@
 name: CI
 
 on:
-  push:
-    branches:
-      - master
   pull_request:
     branches:
-      - master
+      - '*'
+  push:
+    branches:
+      - main
 
 env:
   USE_JAVA_DISTRIBUTION: 'zulu'
